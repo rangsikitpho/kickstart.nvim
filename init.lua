@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -700,6 +700,7 @@ require('lazy').setup({
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'onsails/lspkind.nvim',
     },
     config = function()
       -- See `:help cmp`
@@ -707,6 +708,7 @@ require('lazy').setup({
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
 
+      local lspkind = require 'lspkind'
       cmp.setup {
         snippet = {
           expand = function(args)
@@ -768,9 +770,19 @@ require('lazy').setup({
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         },
         sources = {
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' },
-          { name = 'path' },
+          -- Copilot Source
+          { name = 'copilot', group_index = 2 },
+          -- Other Sources
+          { name = 'nvim_lsp', group_index = 2 },
+          { name = 'luasnip', group_index = 2 },
+          { name = 'path', group_index = 2 },
+        },
+        formatting = {
+          format = lspkind.cmp_format {
+            mode = 'symbol',
+            max_width = 50,
+            symbol_map = { Copilot = '' },
+          },
         },
       }
     end,

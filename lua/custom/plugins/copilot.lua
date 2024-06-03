@@ -6,7 +6,7 @@ return {
     config = function()
       require('copilot').setup {
         panel = {
-          enabled = true,
+          enabled = false,
           auto_refresh = false,
           keymap = {
             jump_prev = '[[',
@@ -21,7 +21,7 @@ return {
           },
         },
         suggestion = {
-          enabled = true,
+          enabled = false,
           auto_trigger = true,
           debounce = 75,
           keymap = {
@@ -61,5 +61,11 @@ return {
       -- See Configuration section for rest
     },
     -- See Commands section for default commands if you want to lazy load on them
+  },
+  {
+    'zbirenbaum/copilot-cmp',
+    config = function()
+      require('copilot_cmp').setup()
+    end,
   },
 }
