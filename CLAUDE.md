@@ -8,18 +8,25 @@ This is a Neovim configuration based on **kickstart.nvim** — a single-file sta
 
 ## Architecture
 
-- `init.lua` — Main config file containing core settings, keymaps, autocommands, and the `lazy.nvim` plugin spec. Most built-in plugins (telescope, treesitter, LSP, blink.cmp, which-key, gitsigns, etc.) are configured inline here.
-- `lua/kickstart/` — Optional kickstart-provided plugin configs (autopairs, debug, gitsigns, indent_line, lint, neo-tree). These are imported via `{ import = 'kickstart.plugins' }` in the lazy.nvim setup.
+- `init.lua` — Main config file containing core settings, keymaps, autocommands, and the `lazy.nvim` plugin spec. Most built-in plugins (snacks.nvim, treesitter, LSP, blink.cmp, which-key, gitsigns, etc.) are configured inline here.
+- `lua/kickstart/` — Optional kickstart-provided plugin configs (autopairs, debug, gitsigns, indent_line, lint). These are imported via `{ import = 'kickstart.plugins' }` in the lazy.nvim setup.
 - `lua/custom/plugins/` — User customizations. Each file returns a lazy.nvim plugin spec table. Auto-imported via `{ import = 'custom.plugins' }`.
 - `lua/custom/keymaps.lua` — Additional which-key group registrations (loaded from `custom/plugins/init.lua`).
 - `lua/custom/autocmds.lua` — Custom autocommands (loaded from `custom/plugins/init.lua`).
 
 ## Key Customizations (lua/custom/)
 
-- **Colorscheme**: Tokyonight disabled, Kanagawa (`kanagawa-wave`) is active. Extra themes installed (catppuccin, nord, everforest).
+- **Colorscheme**: Kanagawa (`kanagawa-wave`) is the active colorscheme, configured in `colorscheme.lua`.
 - **Copilot**: `copilot.lua` + CopilotChat with Anthropic as default provider. Copilot integrated into blink.cmp as a completion source.
-- **Tmux navigation**: `vim-tmux-navigator` with `<C-h/j/k/l>` bindings.
+- **Tmux navigation**: `Navigator.nvim` (Lua-native) with `<C-h/j/k/l>` bindings for splits and tmux panes.
 - **Cursor fix**: VimLeave autocmd resets cursor shape for tmux compatibility.
+
+## Core Plugins
+
+- **Snacks.nvim** — Picker (`<leader>s*`), file explorer (`\`), notifications, and input UI. Replaces Telescope, neo-tree, and fidget.nvim.
+- **blink.cmp** — Autocompletion with Rust fuzzy matcher, Copilot source, and LuaSnip snippets.
+- **conform.nvim** — Format on save. Formatters: stylua (Lua), ruff_format (Python), rustfmt (Rust), rubocop (Ruby).
+- **nvim-lint** — Linting (markdownlint for Markdown).
 
 ## Plugin Management
 

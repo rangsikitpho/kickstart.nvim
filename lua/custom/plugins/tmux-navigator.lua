@@ -1,15 +1,11 @@
 return {
-  'christoomey/vim-tmux-navigator',
-  cmd = {
-    'TmuxNavigateLeft',
-    'TmuxNavigateDown',
-    'TmuxNavigateUp',
-    'TmuxNavigateRight',
-  },
-  keys = {
-    { '<c-h>', '<cmd>TmuxNavigateLeft<cr>' },
-    { '<c-j>', '<cmd>TmuxNavigateDown<cr>' },
-    { '<c-k>', '<cmd>TmuxNavigateUp<cr>' },
-    { '<c-l>', '<cmd>TmuxNavigateRight<cr>' },
-  },
+  'numToStr/Navigator.nvim',
+  event = 'VeryLazy',
+  config = function()
+    require('Navigator').setup()
+    vim.keymap.set('n', '<C-h>', '<cmd>NavigatorLeft<cr>')
+    vim.keymap.set('n', '<C-j>', '<cmd>NavigatorDown<cr>')
+    vim.keymap.set('n', '<C-k>', '<cmd>NavigatorUp<cr>')
+    vim.keymap.set('n', '<C-l>', '<cmd>NavigatorRight<cr>')
+  end,
 }
