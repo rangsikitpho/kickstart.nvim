@@ -343,7 +343,14 @@ require('lazy').setup({
     lazy = false,
     ---@type snacks.Config
     opts = {
-      picker = { enabled = true },
+      picker = {
+        enabled = true,
+        previewers = {
+          file = {
+            ft = '', -- disable treesitter highlighting in preview (workaround for nvim 0.12 crash)
+          },
+        },
+      },
       explorer = { enabled = true },
       notifier = { enabled = true },
       input = { enabled = true },
