@@ -100,6 +100,9 @@ vim.g.have_nerd_font = true
 
 -- Make line numbers default
 vim.opt.number = true
+
+-- Start with all folds open; treesitter fold info is still available via zc/zM.
+vim.opt.foldlevelstart = 99
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
 vim.opt.relativenumber = true
@@ -843,6 +846,8 @@ require('lazy').setup({
           end
           vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
           vim.wo[0][0].foldmethod = 'expr'
+          -- Open all folds on file load; use zc/zM to fold manually.
+          vim.wo[0][0].foldlevel = 99
         end,
       })
     end,
